@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🛠️ Full Stack Roadmap — 100 Projects</title>
+    <style>
+:root {
+  --bg: #000;
+  --surface: #111;
+  --text: #e6e6e6;
+  --subtext: #aaa;
+  --accent: #82aaff; /* Blue accents */
+  --hover: #5c8ed8;
+  --border: #333;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Sticky Flex Layout */
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  flex: 0 0 200px;
+  background-color: var(--surface);
+  padding: 1rem;
+  border-right: 2px solid var(--border);
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar h3 {
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.sidebar a {
+  display: block;
+  color: var(--subtext);
+  text-decoration: none;
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  border-left: 4px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.sidebar a:hover {
+  background-color: var(--border);
+  border-left-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border: 2px solid #333;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  margin-top: 1rem;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Content */
+.container {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1000px;
+}
+
+h1 {
+  font-size: 1.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+}
+
+h2 {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-top: 2rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--border);
+}
+
+h3 {
+  font-size: 1rem;
+  color: var(--hover);
+  margin-top: 1.5rem;
+}
+
+/* Grid layout for projects */
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+@media (min-width: 600px) {
+  ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+li {
+  background-color: var(--surface);
+  border: 2px solid var(--border);
+  padding: 0.6rem;
+  font-size: 0.85rem;
+  transition: background-color 0.15s ease;
+}
+
+li:hover {
+  background-color: var(--border);
+}
+
+/* Typography */
+strong {
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+em {
+  color: var(--subtext);
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+code {
+  background-color: var(--bg);
+  padding: 0.2rem 0.4rem;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  border: 2px solid var(--border);
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.6rem;
+  text-align: left;
+}
+
+th {
+  background-color: var(--surface);
+  color: var(--accent);
+}
+
+td a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+tr:nth-child(even) {
+  background-color: #141414;
+}
+
+.overlay-check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  color: #82aaff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  border: 2px solid #333;
+  border-radius: 4px;
+}
+
+.video-layout {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.video-player {
+  flex: 1 1 640px;
+  aspect-ratio: 16 / 9;
+  border: 2px solid #333;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0,0,0,0.6);
+}
+
+.video-player iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.playlist-tab {
+  flex: 0 0 250px;
+  background-color: #111;
+  border: 2px solid #333;
+  border-radius: 6px;
+  padding: 1rem;
+  color: #e0e0e0;
+}
+
+.playlist-tab h3 {
+  margin-top: 0;
+  color: #82aaff;
+  font-size: 1rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+#videoList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+#videoList button {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#videoList button:hover {
+  background-color: #2a2a2a;
+  color: #82aaff;
+}
+#videoList button.active-video {
+  background-color: #2a2a2a;
+  color: #82aaff;
+  border-left: 3px solid #82aaff;
+}
+
+
+
+/* Footer */
+footer {
+  border-top: 2px solid var(--border);
+  margin-top: 3rem;
+  padding-top: 1rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--subtext);
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h3>🚀 Roadmap</h3>
+        <nav>
+          <a href="#beginner">🌱 Beginner</a>
+          <a href="#intermediate">🔧 Intermediate</a>
+          <a href="#frontend">🎨 Advanced</a>
+          <a href="#backend-beginner">🔙 Backend Beginner</a>
+          <a href="#backend-intermediate">🔙 Backend Intermediate</a>
+          <a href="#backend-advanced">💡 Backend Advanced</a>
+          <a href="#database">📦 Database</a>
+          <a href="#resources">📚 Resources</a>
+          <a href="#end">🤜 Motivation</a>
+        </nav>
+      </aside>
+
+      <div class="container">
+        <header>
+          <h1>🛠️ FULL STACK ROADMAP — 100 PROJECTS</h1>
+          <p>
+            Tu coding ke jungle mein enter kar chuka hai bhai. Yeh roadmap tera
+            Google Maps hai — har level pe 10 projects milenge, full stack banne
+            ka ekdum asli journey. [PS. kisi task pr click karega toh woh mark ho jayega as completed]       
+          </p>
+        </header>
+        <section id="watch-this" style="margin-top: 2rem;">
+  <h2 style="color: #82aaff; font-size: 1.4rem; border-bottom: 2px solid #333; padding-bottom: 0.5rem;">
+    🎬 Watch These alongside
+  </h2>
+  <div class="video-layout">
+    <div class="video-player">
+      <iframe
+        id="ytPlayer"
+        src="https://www.youtube.com/embed/dWQydgGBOEE?enablejsapi=1"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <div class="playlist-tab">
+  <h3>📂 Playlist</h3>
+  <div id="videoList">
+    <button data-id="dWQydgGBOEE">Motivational: Never Stop Programming</button>
+    <button data-id="zTjRZNkhiEU">Git Full Course for Beginners</button>
+    more videos jldi daal duga ..   
+  </div>
+</div>
+
+  </div>
+</section>
+
+        <section id="beginner">
+          <h2>🌱 Beginner Projects (HTML, CSS, JS)</h2>
+          <ul>
+            <li>
+              📝 <strong>Personal Bio Page</strong><br />
+              <em>Hint:</em> Use <code>&lt;div&gt;</code> &
+              <code>&lt;img&gt;</code> — simple layout + bio<br />
+              <em>Tech Stack:</em> HTML/CSS
+            </li>
+            <li>
+              🎨 <strong>Color Palette Picker</strong><br />
+              <em>Hint:</em> Add <code>onclick</code> to boxes, use clipboard
+              API<br />
+              <em>Tech Stack:</em> HTML/CSS/JS
+            </li>
+            <li>
+              📦 <strong>Product Card Design</strong><br />
+              <em>Hint:</em> Grid layout, box-shadow for card effect<br />
+              <em>Tech Stack:</em> HTML/CSS
+            </li>
+            <li>
+              ⏲️ <strong>Countdown Timer</strong><br />
+              <em>Hint:</em> <code>setInterval()</code> + Date calculations<br />
+              <em>Tech Stack:</em> JS
+            </li>
+            <li>
+              💡 <strong>Light/Dark Mode</strong><br />
+              <em>Hint:</em> Add/remove <code>dark</code> class on body<br />
+              <em>Tech Stack:</em> HTML/CSS/JS
+            </li>
+            <li>
+              🧮 <strong>Calculator</strong><br />
+              <em>Hint:</em> Use event listeners on buttons + <code>eval()</code
+              ><br />
+              <em>Tech Stack:</em> JS
+            </li>
+            <li>
+              🎬 <strong>Netflix Landing Page</strong><br />
+              <em>Hint:</em> Use flexbox and background images<br />
+              <em>Tech Stack:</em> HTML/CSS
+            </li>
+            <li>
+              🧘 <strong>Yoga Homepage</strong><br />
+              <em>Hint:</em> Flexbox, Google fonts + animations<br />
+              <em>Tech Stack:</em> HTML/CSS
+            </li>
+            <li>
+              📆 <strong>Digital Clock</strong><br />
+              <em>Hint:</em> Use <code>toLocaleTimeString()</code><br />
+              <em>Tech Stack:</em> JS
+            </li>
+            <li>
+              🧹 <strong>Todo List</strong><br />
+              <em>Hint:</em> DOM manipulation + array logic + localStorage for
+              retention<br />
+              <em>Tech Stack:</em> HTML/CSS/JS
+            </li>
+          </ul>
+        </section>
+        <section id="intermediate">
+          <h2>🔧 Intermediate Projects (Logic + APIs)</h2>
+          <ul>
+            <li>
+              🎲 <strong>Dice Game</strong><br />
+              <em>Hint:</em> Use <code>Math.random()</code> +
+              <code>src</code> change for dice image<br />
+              <em>Tech Stack:</em> JS
+            </li>
+            <li>
+              📈 <strong>Weather App</strong><br />
+              <em>Hint:</em> OpenWeatherMap API + <code>fetch()</code><br />
+              <em>Tech Stack:</em> JS/API
+            </li>
+            <li>
+              📰 <strong>News Aggregator</strong><br />
+              <em>Hint:</em> NewsAPI + <code>async/await</code><br />
+              <em>Tech Stack:</em> JS/API
+            </li>
+            <li>
+              🗺️ <strong>Country Explorer</strong><br />
+              <em>Hint:</em> restcountries API + <code>map()</code><br />
+              <em>Tech Stack:</em> JS/API
+            </li>
+            <li>
+              🧠 <strong>Quiz App</strong><br />
+              <em>Hint:</em> MCQs in array + <code>onclick</code> events, public
+              APIs use kar lena<br />
+              <em>Tech Stack:</em> JS
+            </li>
+            <li>
+              📷 <strong>Image Gallery</strong><br />
+              <em>Hint:</em> Unsplash API + grid layout<br />
+              <em>Tech Stack:</em> JS/API
+            </li>
+            <li>
+              🗣️ <strong>Translator</strong><br />
+              <em>Hint:</em> LibreTranslate or Google API<br />
+              <em>Tech Stack:</em> JS/API
+            </li>
+            <li>
+              🔍 <strong>Live Search</strong><br />
+              <em>Hint:</em> <code>keyup</code> event + <code>includes()</code
+              ><br />
+              <em>Tech Stack:</em> JS
+            </li>
+            <li>
+              🧾 <strong>Expense Tracker</strong><br />
+              <em>Hint:</em> Add/delete expenses + total calculation<br />
+              <em>Tech Stack:</em> JS/LocalStorage
+            </li>
+            <li>
+              📚 <strong>Book Finder</strong><br />
+              <em>Hint:</em> Google Books API + card UI<br />
+              <em>Tech Stack:</em> JS/API
+            </li>
+          </ul>
+        </section>
+        <section id="frontend">
+          <h2>🎨 Advanced Frontend Projects</h2>
+          <ul>
+            <li>
+              📱 <strong>Responsive Portfolio</strong><br />
+              <em>Hint:</em> Use media queries + responsive grid<br />
+              <em>Tech Stack:</em> HTML/CSS/JS
+            </li>
+            <li>
+              🎮 <strong>Tic Tac Toe</strong><br />
+              <em>Hint:</em> Check win conditions after every turn<br />
+              <em>Tech Stack:</em> JS
+            </li>
+            <li>
+              👨‍🎓 <strong>Student Dashboard</strong><br />
+              <em>Hint:</em> Multiple sections + dynamic search<br />
+              <em>Tech Stack:</em> HTML/CSS/JS
+            </li>
+            <li>
+              🧑‍🍳 <strong>Recipe Search</strong><br />
+              <em>Hint:</em> Spoonacular API or TheMealDB<br />
+              <em>Tech Stack:</em> JS/API
+            </li>
+            <li>
+              🛍️ <strong>Product Page</strong><br />
+              <em>Hint:</em> Flexbox + tabs UI<br />
+              <em>Tech Stack:</em> HTML/CSS/JS
+            </li>
+            <li>
+              🧪 <strong>Form Validator</strong><br />
+              <em>Hint:</em> Regex + warning messages<br />
+              <em>Tech Stack:</em> JS
+            </li>
+            <li>
+              📦 <strong>Modal & Popup</strong><br />
+              <em>Hint:</em> <code>display: none/block</code> + backdrop
+              effect<br />
+              <em>Tech Stack:</em> JS
+            </li>
+            <li>
+              🧭 <strong>Sidebar Menu</strong><br />
+              <em>Hint:</em> Use FontAwesome + toggle class<br />
+              <em>Tech Stack:</em> HTML/CSS/JS
+            </li>
+            <li>
+              📊 <strong>Charts Dashboard</strong><br />
+              <em>Hint:</em> Chart.js + dynamic data<br />
+              <em>Tech Stack:</em> JS/Chart.js
+            </li>
+            <li>
+              🌌 <strong>Parallax Scroll</strong><br />
+              <em>Hint:</em> <code>background-attachment: fixed</code> +
+              transitions<br />
+              <em>Tech Stack:</em> HTML/CSS/JS
+            </li>
+          </ul>
+        </section>
+        <section id="backend-beginner">
+          <h2>🔙 Beginner Backend Projects (Node.js, Express)</h2>
+          <ul>
+            <li>
+              🔥 <strong>Basic Server</strong><br />
+              <em>Hint:</em> <code>express()</code> + <code>res.send()</code
+              ><br />
+              <em>Tech Stack:</em> Node/Express
+            </li>
+            <li>
+              📋 <strong>Contact Form Backend</strong><br />
+              <em>Hint:</em> <code>body-parser</code> or
+              <code>express.json()</code><br />
+              <em>Tech Stack:</em> Node/Express
+            </li>
+            <li>
+              📁 <strong>File Upload</strong><br />
+              <em>Hint:</em> Use Multer to store files in folder<br />
+              <em>Tech Stack:</em> Node/Multer
+            </li>
+            <li>
+              🧑‍💻 <strong>Login API</strong><br />
+              <em>Hint:</em> POST login, GET user info<br />
+              <em>Tech Stack:</em> Node/Express
+            </li>
+            <li>
+              🍪 <strong>Cookie Setter</strong><br />
+              <em>Hint:</em> <code>res.cookie()</code> + <code>req.cookies</code
+              ><br />
+              <em>Tech Stack:</em> Node/Express
+            </li>
+            <li>
+              💬 <strong>Comments API</strong><br />
+              <em>Hint:</em> Use array or DB to save comments<br />
+              <em>Tech Stack:</em> Node/Express
+            </li>
+            <li>
+              🧾 <strong>PDF Generator</strong><br />
+              <em>Hint:</em> Use pdfkit or Puppeteer<br />
+              <em>Tech Stack:</em> Node/Express
+            </li>
+            <li>
+              📡 <strong>REST API</strong><br />
+              <em>Hint:</em> GET/POST/PUT/DELETE routes<br />
+              <em>Tech Stack:</em> Node/Express
+            </li>
+            <li>
+              🔒 <strong>JWT Auth</strong><br />
+              <em>Hint:</em> <code>jsonwebtoken</code> + middleware<br />
+              <em>Tech Stack:</em> Node/Express/JWT
+            </li>
+            <li>
+              🎮 <strong>Score Tracker</strong><br />
+              <em>Hint:</em> Connect MongoDB + schema<br />
+              <em>Tech Stack:</em> Node/MongoDB
+            </li>
+          </ul>
+        </section>
+        <section id="backend-intermediate">
+          <h2>🔙 Intermediate Backend Projects (Node.js, Express)</h2>
+          <ul>
+            <li>
+              🧑‍🎓 <strong>User Profile System</strong><br />
+              <em>Hint:</em> Use Express Router + Multer for handling avatar
+              uploads + store profile info in MongoDB (agr multer nhi hota use
+              imgbb upload hack)<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB/Multer
+            </li>
+            <li>
+              🛒 <strong>Shopping Cart API</strong><br />
+              <em>Hint:</em> Use session-based or token-based cart handling with
+              real-time updates<br />
+              <em>Tech Stack:</em> Node/Express/Session or JWT
+            </li>
+            <li>
+              🧠 <strong>Quiz App Backend</strong><br />
+              <em>Hint:</em> Create schemas for quizzes, user answers, and
+              scoring logic<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              📧 <strong>Email Sender API</strong><br />
+              <em>Hint:</em> Use Nodemailer with OAuth2 for secure and scalable
+              email delivery<br />
+              <em>Tech Stack:</em> Node/Express/Nodemailer
+            </li>
+            <li>
+              🔁 <strong>Refresh Token Flow</strong><br />
+              <em>Hint:</em> Implement short-lived access tokens and persistent
+              refresh tokens<br />
+              <em>Tech Stack:</em> Node/Express/JWT
+            </li>
+            <li>
+              📦 <strong>Inventory Manager</strong><br />
+              <em>Hint:</em> Track product quantities and auto-restock alerts
+              using MongoDB aggregate pipeline<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              🧮 <strong>Calculator API</strong><br />
+              <em>Hint:</em> Create route handlers for addition, subtraction,
+              multiplication, division<br />
+              <em>Tech Stack:</em> Node/Express
+            </li>
+            <li>
+              🌐 <strong>URL Shortener</strong><br />
+              <em>Hint:</em> Use base62 encoding + store click count with
+              timestamps<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              🎟️ <strong>Event Booking API</strong><br />
+              <em>Hint:</em> Schema for seats + booking conflict resolution
+              logic<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              🕶️ <strong>Avatar Upload Service</strong><br />
+              <em>Hint:</em> Upload with Multer and serve static files with
+              <code>express.static()</code><br />
+              <em>Tech Stack:</em> Node/Express/Multer
+            </li>
+          </ul>
+        </section>
+        <section id="backend-advanced">
+          <h2>💡 Advanced Backend Projects (Node.js, Express)</h2>
+          <ul>
+            <li>
+              🔗 <strong>OAuth Login System</strong><br />
+              <em>Hint:</em> Implement Passport OAuth2 strategy for third-party
+              login options<br />
+              <em>Tech Stack:</em> Node/Express/Passport.js
+            </li>
+            <li>
+              🧾 <strong>PDF Report Generator</strong><br />
+              <em>Hint:</em> Generate invoices or analytics PDFs from DB with
+              styled content<br />
+              <em>Tech Stack:</em> Node/Express/pdfkit or Puppeteer
+            </li>
+            <li>
+              🕵️ <strong>Audit Log API</strong><br />
+              <em>Hint:</em> Middleware to log route, user ID, and timestamp to
+              a dedicated audit collection<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              🧩 <strong>Microservices Setup</strong><br />
+              <em>Hint:</em> Isolate services like Auth, Products, Orders and
+              connect via REST or gRPC<br />
+              <em>Tech Stack:</em> Node/Express/Docker
+            </li>
+            <li>
+              ⚙️ <strong>Background Job Queue</strong><br />
+              <em>Hint:</em> Process jobs with Bull queue + Redis store +
+              monitor via UI dashboard<br />
+              <em>Tech Stack:</em> Node/Express/Bull/Redis
+            </li>
+            <li>
+              🗃️ <strong>Versioned REST API</strong><br />
+              <em>Hint:</em> Use v1/v2 subrouters and maintain backward
+              compatibility<br />
+              <em>Tech Stack:</em> Node/Express
+            </li>
+            <li>
+              📤 <strong>Real-time Notifications</strong><br />
+              <em>Hint:</em> Emit notifications to client apps on changes in
+              backend data<br />
+              <em>Tech Stack:</em> Node/Express/Socket.IO
+            </li>
+            <li>
+              🗣️ <strong>Comment Moderation API</strong><br />
+              <em>Hint:</em> Filter profanity or toxic content, optionally send
+              to review queue<br />
+              <em>Tech Stack:</em> Node/Express/Regex or Perspective API
+            </li>
+            <li>
+              🔍 <strong>Search Engine API</strong><br />
+              <em>Hint:</em> Use full-text search or external services like
+              Elasticsearch<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              🏘️ <strong>Multi-Tenant Architecture</strong><br />
+              <em>Hint:</em> Separate client data by tenant ID with scoped
+              middleware<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+          </ul>
+        </section>
+        <section id="database">
+          <h2>📦 Database-Focused Projects (MongoDB, Mongoose)</h2>
+          <ul>
+            <li>
+              📌 <strong>Todo List with Tags</strong><br />
+              <em>Hint:</em> Schema for tasks with tag array + indexed tag
+              field<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              🏷️ <strong>Category Tree Explorer</strong><br />
+              <em>Hint:</em> Use parent-child relationships and populate tree
+              data<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              📊 <strong>Analytics Dashboard</strong><br />
+              <em>Hint:</em> Aggregate user activity and serve as JSON for
+              frontend charts<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              🧮 <strong>Budget Tracker</strong><br />
+              <em>Hint:</em> Monthly spending breakdown via timestamp
+              filtering<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              🛂 <strong>RBAC (Role-Based Access)</strong><br />
+              <em>Hint:</em> Define roles and route guards with middleware
+              checking DB-stored roles<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              🛍️ <strong>Product Catalog</strong><br />
+              <em>Hint:</em> Query product collection with limit, skip, and
+              regex filters<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              🔔 <strong>Reminder Scheduler</strong><br />
+              <em>Hint:</em> Use cron jobs to trigger alerts on scheduled
+              time<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB/Node-cron
+            </li>
+            <li>
+              👥 <strong>Friend System</strong><br />
+              <em>Hint:</em> Use MongoDB references for users and mutual friend
+              lists<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              📝 <strong>Blog CMS</strong><br />
+              <em>Hint:</em> Post schema with author reference and dynamic tag
+              filtering<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+            <li>
+              ⏳ <strong>Time Tracking App</strong><br />
+              <em>Hint:</em> Save start/end timestamps, calculate durations,
+              group by day or task<br />
+              <em>Tech Stack:</em> Node/Express/MongoDB
+            </li>
+          </ul>
+        </section>
+        <section id="Resources">
+          <h2>📚 Helpful Resources Table</h2>
+
+        <section id="resources-docs">
+  <h3>📘 Web Tutorials & Documentation</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Platform / Channel</th>
+        <th>Link</th>
+        <th>Kis Kaam Aata Hai?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>freeCodeCamp</td><td><a href="https://www.freecodecamp.org">https://www.freecodecamp.org</a></td><td>Full-stack development seekhne ke liye certified courses milte hain</td></tr>
+      <tr><td>MDN Web Docs</td><td><a href="https://developer.mozilla.org">https://developer.mozilla.org</a></td><td>HTML, CSS aur JavaScript ke official aur trusted documentation</td></tr>
+      <tr><td>W3Schools</td><td><a href="https://www.w3schools.com">https://www.w3schools.com</a></td><td>Basic concepts ko asaani se samajhne ke liye perfect site hai</td></tr>
+      <tr><td>JavaScript.info</td><td><a href="https://javascript.info">https://javascript.info</a></td><td>JavaScript deeply samajhne ke liye examples ke sath explanation</td></tr>
+      <tr><td>CSS Tricks</td><td><a href="https://css-tricks.com">https://css-tricks.com</a></td><td>CSS animations aur layout designing ke tricks milte hain</td></tr>
+      <tr><td>CodePen</td><td><a href="https://codepen.io">https://codepen.io</a></td><td>Frontend code likhne aur turant output dekhne ke liye playground</td></tr>
+      <tr><td>Stack Overflow</td><td><a href="https://stackoverflow.com">https://stackoverflow.com</a></td><td>Koi bhi coding ka issue ho toh sabse pehle yahan hi dekhte hain</td></tr>
+      <tr><td>GeeksForGeeks</td><td><a href="https://www.geeksforgeeks.org">https://www.geeksforgeeks.org</a></td><td>Web dev, DSA, DB – Hindi-English dono mein explanation available</td></tr>
+      <tr><td>DevDocs</td><td><a href="https://devdocs.io">https://devdocs.io</a></td><td>Sabhi tech tools ke docs ko ek jagah aur fast access deta hai</td></tr>
+      <tr><td>Can I use</td><td><a href="https://caniuse.com">https://caniuse.com</a></td><td>Browser compatibility check karne ke liye kaafi useful hai</td></tr>
+      <tr><td>NPM</td><td><a href="https://www.npmjs.com">https://www.npmjs.com</a></td><td>Node.js packages find karne aur install karne ke liye use hota hai</td></tr>
+      <tr><td>GitHub</td><td><a href="https://github.com">https://github.com</a></td><td>Code host karne, version control aur team ke sath kaam karne ke liye</td></tr>
+      <tr><td>GitHub Actions</td><td><a href="https://github.com/features/actions">https://github.com/features/actions</a></td><td>CI/CD pipeline banane aur project auto-deploy karne ke liye</td></tr>
+      <tr><td>Docker Docs</td><td><a href="https://docs.docker.com">https://docs.docker.com</a></td><td>Containerization aur Docker images banana seekhne ke liye</td></tr>
+      <tr><td>Postman Docs</td><td><a href="https://learning.postman.com/docs">https://learning.postman.com/docs</a></td><td>APIs test karne ke liye industry-standard tool aur docs</td></tr>
+      <tr><td>MongoDB Docs</td><td><a href="https://www.mongodb.com/docs">https://www.mongodb.com/docs</a></td><td>NoSQL DB setup aur queries seekhne ke liye official source</td></tr>
+      <tr><td>React Docs</td><td><a href="https://react.dev">https://react.dev</a></td><td>React components aur hooks ka use seekhne ke liye</td></tr>
+      <tr><td>Express Docs</td><td><a href="https://expressjs.com/en/starter/installing.html">https://expressjs.com/en/starter/installing.html</a></td><td>Express server aur routes banane ke liye starter guide</td></tr>
+      <tr><td>Node.js Docs</td><td><a href="https://nodejs.org/en/docs">https://nodejs.org/en/docs</a></td><td>Backend JS ko deeply samajhne ke liye official docs</td></tr>
+      <tr><td>Next.js Docs</td><td><a href="https://nextjs.org/docs">https://nextjs.org/docs</a></td><td>Fullstack React framework ke real-world apps banane ke liye</td></tr>
+      <tr><td>Firebase Docs</td><td><a href="https://firebase.google.com/docs">https://firebase.google.com/docs</a></td><td>Auth, hosting, realtime DB aur cloud functions ke liye use hota hai</td></tr>
+      <tr><td>Stripe Docs</td><td><a href="https://stripe.com/docs">https://stripe.com/docs</a></td><td>Online payment gateway setup aur webhook implementation</td></tr>
+      <tr><td>Supabase Docs</td><td><a href="https://supabase.com/docs">https://supabase.com/docs</a></td><td>Firebase alternative with Postgres DB aur built-in Auth</td></tr>
+      <tr><td>Prisma Docs</td><td><a href="https://www.prisma.io/docs">https://www.prisma.io/docs</a></td><td>Node.js ke liye ORM – easy DB modeling aur querying</td></tr>
+      <tr><td>Vite Docs</td><td><a href="https://vitejs.dev/guide">https://vitejs.dev/guide</a></td><td>Modern frontend projects ke liye fast dev server aur bundling</td></tr>
+      <tr><td>Tailwind Docs</td><td><a href="https://tailwindcss.com/docs">https://tailwindcss.com/docs</a></td><td>CSS classes ke through fast UI design karne ke liye perfect hai</td></tr>
+    </tbody>
+  </table>
+
+
+
+          <h3>📺 YouTube Channels for Learning</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Channel</th>
+                <th>Link</th>
+                <th>Specialty</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Traversy Media</td>
+                <td>
+                  <a href="https://www.youtube.com/@TraversyMedia">YouTube</a>
+                </td>
+                <td>Full-stack tutorials and crash courses</td>
+              </tr>
+              <tr>
+                <td>Net Ninja</td>
+                <td><a href="https://www.youtube.com/@NetNinja">YouTube</a></td>
+                <td>React, MongoDB, Node.js step-by-step</td>
+              </tr>
+              <tr>
+                <td>Fireship</td>
+                <td><a href="https://www.youtube.com/@Fireship">YouTube</a></td>
+                <td>Dev concepts in 100 seconds</td>
+              </tr>
+              <tr>
+                <td>Codevolution</td>
+                <td>
+                  <a href="https://www.youtube.com/@Codevolution">YouTube</a>
+                </td>
+                <td>React, Next.js, TypeScript</td>
+              </tr>
+              <tr>
+                <td>Programming with Mosh</td>
+                <td>
+                  <a href="https://www.youtube.com/@ProgrammingwithMosh"
+                    >YouTube</a
+                  >
+                </td>
+                <td>JavaScript, Python, React courses</td>
+              </tr>
+              <tr>
+                <td>Tech With Tim</td>
+                <td>
+                  <a href="https://www.youtube.com/@TechWithTim">YouTube</a>
+                </td>
+                <td>Python, ML, backend logic</td>
+              </tr>
+              <tr>
+                <td>Academind</td>
+                <td>
+                  <a href="https://www.youtube.com/@academind">YouTube</a>
+                </td>
+                <td>Full-stack walkthroughs (React, GraphQL)</td>
+              </tr>
+              <tr>
+                <td>CodeWithHarry</td>
+                <td>
+                  <a href="https://www.youtube.com/@CodeWithHarry">YouTube</a>
+                </td>
+                <td>Hindi content for web dev + DSA</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="end">
+          <h2>🤜 Tu Kar Sakta Hai 🤛</h2>
+          <p>
+            Code likhne ka best tareeka hai — ek ek project uthao aur usko
+            khatam karo 💪<br />
+            Main hoon tera dost, coach, aur cheerleader.
+          </p>
+        </section>
+
+        <footer>
+          <p>📄 Written by @apurvsikka</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- lndchd -->
+     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('li');
+  const completed = JSON.parse(localStorage.getItem('completedTasks')) || {};
+
+  // Assign index to each li and apply completion styling if needed
+  items.forEach((item, idx) => {
+    item.dataset.index = idx;
+    if (completed[idx]) {
+      markAsComplete(item);
+    }
+
+    item.addEventListener('click', () => {
+      const index = item.dataset.index;
+      if (completed[index]) {
+        delete completed[index];
+        unmark(item);
+      } else {
+        completed[index] = true;
+        markAsComplete(item);
+      }
+      localStorage.setItem('completedTasks', JSON.stringify(completed));
+    });
+  });
+
+  function markAsComplete(el) {
+    el.style.position = 'relative';
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay-check';
+    overlay.innerHTML = '✅';
+    el.appendChild(overlay);
+  }
+
+  function unmark(el) {
+    const overlay = el.querySelector('.overlay-check');
+    if (overlay) overlay.remove();
+  }
+});
+
+// vidio
+
+
+     </script>
+<script>
+  let playlistPlayer;
+
+  // YouTube API Ready Handler
+  function onYouTubeIframeAPIReady() {
+    playlistPlayer = new YT.Player('ytPlayer');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const playlistButtons = document.querySelectorAll('#videoList button');
+
+    playlistButtons.forEach(btn => {
+      const videoId = btn.dataset.id;
+      const title = btn.dataset.title || btn.innerText;
+
+      // Playlist click → Switch video
+      btn.addEventListener('click', () => {
+        if (playlistPlayer?.loadVideoById) {
+          playlistPlayer.loadVideoById(videoId);
+        } else {
+          // Fallback: Set iframe src manually
+          document.getElementById('ytPlayer').src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
+        }
+
+        // Optional: Highlight current button
+        playlistButtons.forEach(b => b.classList.remove('active-video'));
+        btn.classList.add('active-video');
+      });
+    });
+  });
+
+  // Inject YouTube IFrame API
+  const tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.body.appendChild(tag);
+</script>
+
+
+  </body>
+</html>
